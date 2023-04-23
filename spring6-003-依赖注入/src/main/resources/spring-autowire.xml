@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--根据类型自动装配-->
+    <!--自动装配是基于set方法的-->
+    <!--根据类型自动装配的时候，在有效的配置文件中，某种类型的实例只能有一个-->
+    <bean class="com.limu.spring6.dao.VipDao"/>
+    <bean class="com.limu.spring6.dao.UserDao"/>
+    <bean id="customerService" class="com.limu.spring6.service.CustomerService" autowire="byType"/>
+
+
+
+    <!--根据名称自动装配-->
+    <!--注意：自动装配也是基于Set方法实现的-->
+    <bean id="orderService" class="com.limu.spring6.service.OrderService" autowire="byName"/>
+
+    <!--id一般也叫做bean的名称-->
+    <!--根据名称进行自动装配时，被注入的对象的bean的id不能随便写，setter方法去掉set首字母小写-->
+    <bean id="orderDao" class="com.limu.spring6.dao.OrderDao"/>
+
+    <!--<bean id="orderDao" class="com.limu.spring6.dao.OrderDao"/>
+
+    <bean id="orderService" class="com.limu.spring6.service.OrderService">
+        <property name="orderDao" ref="orderDao"/>
+    </bean>-->
+
+
+</beans>

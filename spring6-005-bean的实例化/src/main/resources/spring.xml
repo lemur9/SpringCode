@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="dateFactoryBean" class="com.limu.spring6.bean.DateFactoryBean">
+        <constructor-arg name="strDate" value="2000-10-25"/>
+    </bean>
+
+    <bean id="studentBean" class="com.limu.spring6.bean.Student">
+        <property name="birth" ref="dateFactoryBean"/>
+    </bean>
+
+
+    <!--这种方式只能获取系统的当前时间，不能实际使用-->
+    <bean id="nowTime" class="java.util.Date"/>
+
+    <bean id="student" class="com.limu.spring6.bean.Student">
+        <!--把日期类型当作简单类型-->
+        <!--<property name="birth" value="Mon Oct 10 14:30:26 CST 2022"/>-->
+        <!--把日期类型当作非简单类型-->
+        <property name="birth" ref="nowTime"/>
+    </bean>
+
+
+    <!--Spring实例化第一种方式：在spring配置文件中直接配置类全路径，Spring会自动调用该类的无参数构造方法来实例化Bean-->
+    <bean id="springBean" class="com.limu.spring6.bean.SpringBean"/>
+
+    <!--Spring实例化第二种方式：通过简单工厂模式。需要在Spring配置文件中告诉Spring框架，调用哪个类的哪个方法获取Bean-->
+    <!--factory-method 属性指定的是工厂类中的静态方法，也就是告诉Spring框架，调用这个方法可以获取Bean。-->
+    <bean id="starBean" class="com.limu.spring6.bean.StarFactory" factory-method="get"/>
+
+    <!--Spring实例化第三种方式：通过工厂方法模式。通过factory-bean属性+ factory-method属性来共同完成.-->
+    <!--告诉Spring框架，调用哪个对象的哪个方法获取Bean-->
+    <!--这里的GunFactory实际上就是一个FactoryBean-->
+    <bean id="gunFactoryBean" class="com.limu.spring6.bean.GunFactory"/>
+    <!--factory-bean属性告诉Spring调用哪个对象。factory-method属性告诉Spring调用该对象的哪个方法-->
+    <bean id="gunBean" factory-bean="gunFactoryBean" factory-method="get"/>
+
+    <!--Spring实例化第四种方式：通过FactoryBean接口来实现。-->
+    <!--这种方式实际上就是第三种方式的简化。-->
+    <!--由于编写的PersonFactoryBean类实现了FactoryBean接口，所以这个类是一个特殊的类，不需要再手动指定factory-bean和factory-method属性-->
+    <!--通过一个特殊的Bean：工厂Bean.来返回一个普通的Bean Person对象-->
+    <!--通过FactoryBean这个工厂Bean主要是想对普通Bean进行加工处理。-->
+    <bean id="personBean" class="com.limu.spring6.bean.PersonFactoryBean"/>
+
+</beans>

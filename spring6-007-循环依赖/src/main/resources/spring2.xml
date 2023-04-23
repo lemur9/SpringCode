@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--构造注入-->
+    <!--注意：基于构造注入的方式下产生的循环依赖是无法解决的，所以写代码时一定要注意，即使是单例的也不行-->
+    <bean id="hus" class="com.limu.spring6.bean2.Husband" scope="singleton">
+        <constructor-arg name="name" value="张三"/>
+        <constructor-arg name="wife" ref="wf"/>
+    </bean>
+    <bean id="wf" class="com.limu.spring6.bean2.Wife" scope="singleton">
+        <constructor-arg name="name" value="李四"/>
+        <constructor-arg name="husband" ref="hus"/>
+    </bean>
+</beans>

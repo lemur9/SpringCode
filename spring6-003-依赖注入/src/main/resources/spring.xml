@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--    bean标签的两个重要属性
+                id:唯一标识
+                class:必须是全限定类名
+    -->
+    <!--配置userDao-->
+    <bean id="userDaoBean" class="com.limu.spring6.dao.UserDao"/>
+
+    <!--配置userService-->
+    <bean id="userServiceBean" class="com.limu.spring6.service.UserService">
+        <!--使用set方法注入，需要配置property标签-->
+        <!--name属性：指定set方法的方法名，去掉set，把剩下的单词首字母小写-->
+        <!--ref属性：引用，后面指定要注入的bean的id-->
+        <property name="userDao" ref="userDaoBean"/>
+        <property name="vipDao" ref="vipDaoBean"/>
+    </bean>
+
+    <bean id="vipDaoBean" class="com.limu.spring6.dao.VipDao"/>
+
+</beans>

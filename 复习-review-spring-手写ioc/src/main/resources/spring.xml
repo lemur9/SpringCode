@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="people" class="com.limu.review.domain.People">
+        <property name="realName" value="zhangsan"/>
+        <property name="age" value="24"/>
+        <property name="address" ref="address"/>
+    </bean>
+
+    <bean id="address" class="com.limu.review.domain.Address">
+        <property name="city" value="ShangHai"/>
+        <property name="street" value="虹桥"/>
+    </bean>
+</beans>

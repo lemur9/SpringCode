@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--通过factory-bean实例化-->
+    <bean id="factory" class="com.limu.spring.review.domain.BeanFactory" c:name="vip"/>
+    <bean factory-bean="factory" factory-method="init" />
+
+    <!--简单工厂模式-->
+    <bean id="user" class="com.limu.spring.review.domain.StaticFactory" factory-method="init"/>
+
+    <!--实现FactoryBean接口实现实例化-->
+    <bean id="order" class="com.limu.spring.review.domain.OrderFactoryBean"/>
+
+    
+    <bean class="com.limu.spring.review.domain.BeanPostPro"/>
+</beans>

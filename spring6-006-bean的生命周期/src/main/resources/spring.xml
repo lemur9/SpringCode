@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--配置Bean后处理器-->
+    <!--
+        注意：这个Bean后处理器将作用于整个配置文件中所有的bean，只作用于当前xml文件。
+             当有多个xml文件时，对于另外的xml文件不起作用
+    -->
+    <bean class="com.limu.spring6.bean.LogBeanPostProcessor"/>
+
+    <!--需要手动指定初始化方法和销毁方法。-->
+    <bean id="user" class="com.limu.spring6.bean.User" init-method="initBean" destroy-method="destroyBean" scope="prototype">
+        <property name="name" value="张三"/>
+    </bean>
+
+    <!--<bean id="vip" class="com.limu.spring6.bean.Vip"/>-->
+</beans>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--使用无参构造法实例化对象-->
+    <bean id="user" class="com.limu.review.beanLife.User" p:name="limu" init-method="initUser" destroy-method="destroyUser"/>
+
+    <!--使用BeanFactory实例化对象-->
+<!--    <bean id="user" class="com.limu.review.beanLife.UserBeanFactory"/>-->
+
+    <!--使用简单工厂实例化对象-->
+<!--    <bean id="user" class="com.limu.review.beanLife.UserBeanFactory" factory-method="getUserBean" init-method="initUser" destroy-method="destroyUser"/>-->
+
+
+    <!--后处理器-->
+<!--    <bean class="com.limu.review.beanLife.UserProcessor"/>-->
+</beans>

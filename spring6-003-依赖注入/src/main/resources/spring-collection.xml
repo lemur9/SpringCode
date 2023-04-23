@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="personBean" class="com.limu.spring6.bean.Person">
+        <property name="names">
+            <!--list集合有序可重复-->
+            <list>
+                <value>小明</value>
+                <value>小亮</value>
+                <value>小亮</value>
+                <value>小红</value>
+                <value>小亮</value>
+                <value>张三</value>
+                <value>小红</value>
+            </list>
+        </property>
+        <property name="addrs">
+            <!--set无序不可重复-->
+            <set>
+                <value>北京</value>
+                <value>北京</value>
+                <value>上海</value>
+                <value>天津</value>
+                <value>上海</value>
+                <value>南京</value>
+                <value>福建</value>
+            </set>
+        </property>
+
+        <property name="phones">
+            <!--注入map集合-->
+            <map>
+                <!--如果key和value不是普通类型，使用key-ref和value-ref配置-->
+                <!--<entry key-ref="" value-ref=""/>-->
+                <!--简单属性类型使用key，value属性-->
+                <entry key="1" value = "12345678"/>
+                <entry key="2" value = "12341234"/>
+                <entry key="3" value = "12213434"/>
+                <entry key="4" value = "12334344"/>
+            </map>
+        </property>
+
+        <property name="properties">
+            <!--注入Properties属性类对象-->
+            <props>
+                <prop key="userName">root</prop>
+                <prop key="password">123456</prop>
+            </props>
+        </property>
+    </bean>
+</beans>
